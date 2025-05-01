@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Tracking Client</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .device-card {
+            transition: all 0.3s;
+        }
+        .device-card:hover {
+            background-color: #f8f9fa;
+        }
+        #map {
+            height: 400px;
+            width: 100%;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container py-4">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Device Tracking Client</h4>
+            </div>
+            <div class="card-body">
+                <div id="connectionStatus" class="alert alert-info mb-3">
+                    Checking connection status...
+                </div>
+
+                <!-- Authentication Section -->
+                <div id="authSection">
+                    <div class="mb-3">
+                        <label for="accessCode" class="form-label">Access Code</label>
+                        <input type="text" id="accessCode" class="form-control" placeholder="Enter 6-digit code">
+                    </div>
+                    <button id="verifyCodeBtn" class="btn btn-primary">Verify Code</button>
+                </div>
+
+                <!-- Tracking Section -->
+                <div id="trackingSection" class="d-none">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                            <h5>Tracking: <span id="deviceName"></span></h5>
+                            <small class="text-muted">Device ID: <span id="deviceId"></span></small>
+                        </div>
+                        <span id="statusBadge" class="badge bg-secondary">Offline</span>
+                    </div>
+                    
+                    <div id="lastLocation" class="mb-3 p-3 bg-light rounded">
+                        No location data yet
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="interval" class="form-label">Update Interval (seconds)</label>
+                        <input type="number" id="interval" class="form-control" value="10" min="5">
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button id="startTrackingBtn" class="btn btn-success">Start Tracking</button>
+                        <button id="stopTrackingBtn" class="btn btn-danger d-none">Stop Tracking</button>
+                        <button id="switchDeviceBtn" class="btn btn-secondary">Switch Device</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase and App Scripts -->
+    <script type="module" src="./device-client.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
